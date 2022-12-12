@@ -1,48 +1,52 @@
 import React from 'react';
-import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import { Nav, Card, Link } from './homeStyle';
 
 function Home() {
   return (
     <Nav>
       <Card>
-        <Link to="pilotos">Pilotos</Link>
+        <Link to="pilotos" className="pilot">
+          <div>
+            <h1>Pilotos</h1>
+            <p>
+              Veja a lista de todos os pilotos que ja passaram pela Fórmula 1 e,
+              informações sobre cada um deles.
+            </p>
+          </div>
+        </Link>
       </Card>
       <Card>
-        <Link to="circuitos">circuitos</Link>
+        <Link to="circuitos" className="circuito">
+          <div>
+            <h1>Circuitos</h1>
+            <p>
+              Circuitos que ja fizeram e fazem parte do calendario de corridas
+              da Fórmula 1.
+            </p>
+          </div>
+        </Link>
       </Card>
       <Card>
-        <Link to="equipes">equipes</Link>
+        <Link to="equipes" className="team">
+          <div>
+            <h1>Equipes</h1>
+            <p>Conheça todas as equipes que ja participaram da Fórmula 1.</p>
+          </div>
+        </Link>
       </Card>
       <Card>
-        <Link to="rankings">Rankings</Link>
+        <Link to="rankings" className="ranking">
+          <div>
+            <h1>Rankings</h1>
+            <p>
+              Todos os campeões mundiais, equipes vencedoras do campeonato de
+              construtores e, ranking do grid atual.
+            </p>
+          </div>
+        </Link>
       </Card>
     </Nav>
   );
 }
 
 export default Home;
-
-const Nav = styled.nav`
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-wrap: wrap;
-  padding: 10px;
-`;
-
-const Card = styled.section`
-  border: 1px solid red;
-  width: 300px;
-  height: 500px;
-  margin: 10px;
-`;
-
-const Link = styled(NavLink)`
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-`;

@@ -46,7 +46,7 @@ function Drivers() {
 
   return (
     <Container>
-      <h1>pilotos</h1>
+      <h1>Em desenvolvimento...</h1>
     </Container>
   );
 }
@@ -54,8 +54,10 @@ function Drivers() {
 export default Drivers;
 
 const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 85vh;
-  border: 1px solid red;
 
   h1 {
     color: #fff;

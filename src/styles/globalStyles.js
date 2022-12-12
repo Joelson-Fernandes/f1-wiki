@@ -12,4 +12,14 @@ export default createGlobalStyle`
   body {
     background-color: #000;
   }
+
+  h1 {
+    font-family: 'Zen Dots', cursive;
+    letter-spacing: 4px;
+  }
+
+  p {
+    font-family: 'Zen Dots', cursive;
+    letter-spacing: 3px;
+  }
 `;

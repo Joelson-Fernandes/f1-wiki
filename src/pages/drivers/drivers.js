@@ -1,65 +1,50 @@
 /* eslint-disable jsx-a11y/alt-text */
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { useLoaderData } from 'react-router-dom';
 import styled from 'styled-components';
-import { apiDataUrl } from '../../lib/axios';
+import { ergastAPI } from '../../lib/axios';
+import DriversList from './driverList';
+
+// Busca todos os pilotos
+export async function getDrivers() {
+  try {
+    const { data } = await ergastAPI.get('drivers.json?=123', {
+      params: {
+        limit: 1000,
+      },
+    });
+    return data;
+  } catch (error) {
+    return error;
+  }
+}
 
 function Drivers() {
-  // const [imgURL, setImgURL] = useState('');
-  const [data, setData] = useState([]);
-  const [drivers, setDrivers] = useState([]);
-
-  useEffect(() => {
-    /*
-    driverImgWiki
-      .get('api.php', {
-        params: {
-          action: 'query',
-          prop: 'images',
-          format: 'json',
-          titles: 'Lewis Hamilton',
-          origin: '*',
-          redirects: '',
-        },
-      })
-      .then((res) => {
-        console.log(res.data.query);
-        setImgURL(res.data.query.pages.pageimage);
-      })
-      .catch((e) => console.log(e));
-      */
-
-    apiDataUrl
-      .get('drivers.json?=123', {
-        params: {
-          limit: 1000,
-        },
-      })
-      .then((res) => {
-        setData(res.data.MRData);
-        setDrivers(res.data.MRData.DriverTable);
-      })
-      .catch((e) => console.log(e));
-  }, []);
-
-  console.log(data);
-  console.log(drivers);
+  const data = useLoaderData();
+  const drivers = data.MRData.DriverTable;
 
   return (
     <Container>
-      <h1>Em desenvolvimento...</h1>
+      <Header>
+        <h1>inputs de ordenação e busca</h1>
+      </Header>
+      <DriversList drivers={drivers} />
     </Container>
   );
 }
 
 export default Drivers;
 
-const Container = styled.div`
+const Container = styled.section`
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
   height: 85vh;
 
   h1 {
     color: #fff;
   }
+`;
+
+const Header = styled.div`
+  border: 1px solid red;
 `;

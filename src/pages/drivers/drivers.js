@@ -22,6 +22,7 @@ export async function getDrivers() {
 function Drivers() {
   const data = useLoaderData();
   const drivers = data.MRData.DriverTable;
+  console.log(data);
 
   return (
     <Container>
@@ -35,16 +36,6 @@ function Drivers() {
 
 export default Drivers;
 
-const Container = styled.section`
-  display: flex;
-  flex-direction: column;
-  height: 85vh;
+const Container = styled.section``;
 
-  h1 {
-    color: #fff;
-  }
-`;
-
-const Header = styled.div`
-  border: 1px solid red;
-`;
+const Header = styled.div``;

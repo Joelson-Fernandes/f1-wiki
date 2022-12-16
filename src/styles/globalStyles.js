@@ -13,7 +13,7 @@ export default createGlobalStyle`
     background-color: #000;
   }
 
-  h1 {
+  h1, h2, h3, h4, h5, h6 {
     font-family: 'Zen Dots', cursive;
     letter-spacing: 4px;
   }

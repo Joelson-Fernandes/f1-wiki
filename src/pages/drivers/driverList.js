@@ -3,13 +3,21 @@ import React from 'react';
 import styled from 'styled-components';
 import DriverListCard from './driverListCard';
 
-function DriversList({ drivers }) {
-  console.log(drivers);
+function DriversList({ data, pilotSearch }) {
+  const drivers = data.MRData.DriverTable.Drivers;
+
+  // filtro de busca por texto
+  const driversFiltered = pilotSearch
+    ? drivers.filter((item) => {
+        const name = `${item.givenName} ${item.familyName}`;
+        return name.toLowerCase().includes(pilotSearch.toLowerCase());
+      })
+    : drivers;
 
   return (
     <Container>
-      {drivers.Drivers.map((driver) => {
-        return <DriverListCard driver={driver} />;
+      {driversFiltered.map((driver) => {
+        return <DriverListCard driver={driver} key={driver.driverId} />;
       })}
     </Container>
   );
@@ -21,5 +29,5 @@ const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  padding: 15px;
+  padding: 8px 15px;
 `;

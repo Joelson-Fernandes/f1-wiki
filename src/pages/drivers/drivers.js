@@ -1,9 +1,10 @@
 /* eslint-disable jsx-a11y/alt-text */
-import React from 'react';
+import React, { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import styled from 'styled-components';
 import { ergastAPI } from '../../lib/axios';
 import DriversList from './driverList';
+import Inputs from './inputs';
 
 // Busca todos os pilotos
 export async function getDrivers() {
@@ -20,16 +21,13 @@ export async function getDrivers() {
 }
 
 function Drivers() {
+  const [pilotSearch, setPilotSearch] = useState('');
   const data = useLoaderData();
-  const drivers = data.MRData.DriverTable;
-  console.log(data);
 
   return (
     <Container>
-      <Header>
-        <h1>inputs de ordenação e busca</h1>
-      </Header>
-      <DriversList drivers={drivers} />
+      <Inputs pilotSearch={pilotSearch} setPilotSearch={setPilotSearch} />
+      <DriversList data={data} pilotSearch={pilotSearch} />
     </Container>
   );
 }
@@ -37,5 +35,3 @@ function Drivers() {
 export default Drivers;
 
 const Container = styled.section``;
-
-const Header = styled.div``;

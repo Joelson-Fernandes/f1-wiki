@@ -11,6 +11,8 @@ export default createGlobalStyle`
 
   body {
     background-color: #000;
+    max-width: 1400px;
+    margin: auto;
   }
 
   h1, h2, h3, h4, h5, h6 {

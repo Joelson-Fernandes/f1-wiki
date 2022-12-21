@@ -22,6 +22,7 @@ function ErrorPage() {
 export default ErrorPage;
 
 const Error = styled.div`
+  max-width: 1400px;
   width: 100vw;
   display: flex;
   height: 100vh;

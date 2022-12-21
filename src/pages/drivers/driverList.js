@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import { Pagination } from '@mui/material';
 import DriverListCard from './driverListCard';
 
 function DriversList({ data, pilotSearch }) {
@@ -14,11 +15,29 @@ function DriversList({ data, pilotSearch }) {
       })
     : drivers;
 
+  // variaveis de páginação
+  const [currentPage, setCurrentPage] = useState(0);
+  const page = 12;
+  const count = Math.ceil(drivers.length / page);
+  const startIndex = currentPage * page;
+  const endIndex = startIndex + page;
+  const currentData = driversFiltered.slice(startIndex, endIndex);
+
+  const handleChange = (e, p) => {
+    setCurrentPage(p - 1);
+  };
+
   return (
     <Container>
-      {driversFiltered.map((driver) => {
+      {currentData.map((driver) => {
         return <DriverListCard driver={driver} key={driver.driverId} />;
       })}
+      <Pagination
+        count={count}
+        onChange={handleChange}
+        siblingCount={0}
+        shape="rounded"
+      />
     </Container>
   );
 }
@@ -30,4 +49,34 @@ const Container = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   padding: 8px 15px;
+
+  // nav paginação
+  nav {
+    display: flex;
+    justify-content: center;
+    width: 95%;
+    padding: 15px 0;
+    border-bottom: 2px solid red;
+
+    button {
+      &.MuiPaginationItem-root {
+        color: #fff;
+        border: 2px solid red;
+
+        &:hover {
+          color: #fff;
+          background-color: red;
+          border: 2px solid #000;
+        }
+      }
+      &.Mui-selected {
+        color: #fff;
+        background-color: red;
+      }
+    }
+
+    div {
+      color: #fff;
+    }
+  }
 `;

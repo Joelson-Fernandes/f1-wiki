@@ -60,13 +60,13 @@ const Container = styled.div`
 
     button {
       &.MuiPaginationItem-root {
-        color: #fff;
+        color: ${(props) => props.theme.title};
         border: 2px solid red;
 
         &:hover {
           color: #fff;
           background-color: red;
-          border: 2px solid #000;
+          border: 2px solid ${(props) => props.theme.background};
         }
       }
       &.Mui-selected {

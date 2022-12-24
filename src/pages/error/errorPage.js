@@ -5,7 +5,6 @@ import GlobalStyles from '../../styles/globalStyles';
 
 function ErrorPage() {
   const error = useRouteError();
-  console.error(error);
 
   return (
     <Error>
@@ -29,5 +28,5 @@ const Error = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: #fff;
+  color: ${(props) => props.theme.title};
 `;

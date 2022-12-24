@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
+import ThemeButton from './themeButton';
 import logo from '../../assets/logo/logo.png';
 
 function Header() {
@@ -11,6 +12,9 @@ function Header() {
           <img src={logo} alt="logo" width={150} />
         </NavLink>
         <Title>Wiki.</Title>
+        <div>
+          <ThemeButton />
+        </div>
       </Nav>
     </HeaderBar>
   );
@@ -27,9 +31,14 @@ const Nav = styled.nav`
   width: 95%;
   padding: 15px;
   display: flex;
-  justify-content: center;
   align-items: center;
   border-bottom: 2px solid red;
+
+  div {
+    display: flex;
+    width: 100%;
+    justify-content: end;
+  }
 `;
 
 const Title = styled.h1`

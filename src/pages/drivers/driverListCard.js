@@ -33,20 +33,24 @@ const Link = styled(NavLink)`
   padding: 2px;
   margin: 8px;
   border-radius: 0px 15px 0px 15px;
-  -webkit-box-shadow: -7px 7px 0px -4px rgba(255, 0, 0, 1);
-  -moz-box-shadow: -7px 7px 0px -4px rgba(255, 0, 0, 1);
-  box-shadow: -7px 7px 0px -4px rgba(255, 0, 0, 1);
+  -webkit-box-shadow: -7px 7px 0px -4px ${(props) => props.theme.cardDrivers.shadow};
+  -moz-box-shadow: -7px 7px 0px -4px ${(props) => props.theme.cardDrivers.shadow};
+  box-shadow: -7px 7px 0px -4px ${(props) => props.theme.cardDrivers.shadow};
 `;
 
 const Card = styled.fieldset`
   height: 100%;
   padding: 15px;
-  color: #fff;
-  border: 3px solid #ccc;
+  color: ${(props) => props.theme.cardDrivers.text};
+  border: 3px solid ${(props) => props.theme.cardDrivers.border};
   border-radius: 0px 15px 0px 15px;
-  background-color: rgba(58, 53, 50, 0.4);
+  background-color: ${(props) => props.theme.cardDrivers.background};
   position: relative;
-  transition: 1s linear;
+  transition: 0.1s linear;
+
+  h1 {
+    color: ${(props) => props.theme.cardDrivers.title};
+  }
 
   &:hover {
     animation: cards-animation 0.5s both;

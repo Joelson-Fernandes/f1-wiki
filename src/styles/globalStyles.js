@@ -10,7 +10,7 @@ export default createGlobalStyle`
   }
 
   body {
-    background-color: #000;
+    background-color: ${(props) => props.theme.background};
     max-width: 1400px;
     margin: auto;
   }

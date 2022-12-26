@@ -4,16 +4,24 @@ import styled from 'styled-components';
 import { Pagination } from '@mui/material';
 import DriverListCard from './driverListCard';
 
-function DriversList({ data, pilotSearch }) {
+function DriversList({ data, pilotSearch, searchSort }) {
   const drivers = data.MRData.DriverTable.Drivers;
 
   // filtro de busca por texto
-  const driversFiltered = pilotSearch
+  const pilotTextSearch = pilotSearch
     ? drivers.filter((item) => {
         const name = `${item.givenName} ${item.familyName}`;
         return name.toLowerCase().includes(pilotSearch.toLowerCase());
       })
     : drivers;
+
+  // filtra pilotos em ordem alfabetica
+  const driversFiltered =
+    searchSort && searchSort.target.value === 'a-z'
+      ? pilotTextSearch.sort((a, b) =>
+          a.givenName.toLowerCase() > b.givenName.toLowerCase() ? 1 : -1
+        )
+      : pilotTextSearch;
 
   // variaveis de páginação
   const [currentPage, setCurrentPage] = useState(0);
@@ -76,7 +84,7 @@ const Container = styled.div`
     }
 
     div {
-      color: #fff;
+      color: ${(props) => props.theme.title};
     }
   }
 `;

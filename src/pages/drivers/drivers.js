@@ -22,12 +22,21 @@ export async function getDrivers() {
 
 function Drivers() {
   const [pilotSearch, setPilotSearch] = useState('');
+  const [searchSort, setSearchSort] = useState('');
   const data = useLoaderData();
 
   return (
     <Container>
-      <Inputs pilotSearch={pilotSearch} setPilotSearch={setPilotSearch} />
-      <DriversList data={data} pilotSearch={pilotSearch} />
+      <Inputs
+        pilotSearch={pilotSearch}
+        setPilotSearch={setPilotSearch}
+        setSearchSort={setSearchSort}
+      />
+      <DriversList
+        data={data}
+        pilotSearch={pilotSearch}
+        searchSort={searchSort}
+      />
     </Container>
   );
 }

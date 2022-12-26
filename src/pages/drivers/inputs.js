@@ -7,8 +7,7 @@ function Inputs({ searchText, setPilotSearch, setSearchSort }) {
     <SearchFor>
       <select onChange={setSearchSort}>
         <option defaultValue>Filtro</option>
-        <option value="">.</option>
-        <option value="">.</option>
+        <option value="a-z">a - z</option>
       </select>
 
       <input
@@ -33,13 +32,14 @@ const SearchFor = styled.div`
   input,
   select {
     font-size: 16px;
-    border-width: 2px;
-    border-style: solid;
-    padding: 4px;
-    border-color: #ff0000;
-    height: 30px;
+    padding: 6px;
+    height: 32px;
     color: #707b81;
     margin-left: 15px;
+    border: none;
+    border-radius: 6px 6px 0px 0px;
+    border-bottom: 2px solid red;
+    background-color: RGBA(204, 204, 204, 0.33);
   }
 `;
 

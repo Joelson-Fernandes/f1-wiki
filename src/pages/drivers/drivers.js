@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/alt-text */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import styled from 'styled-components';
 import { ergastAPI } from '../../lib/axios';
@@ -23,7 +23,30 @@ export async function getDrivers() {
 function Drivers() {
   const [pilotSearch, setPilotSearch] = useState('');
   const [searchSort, setSearchSort] = useState('');
-  const data = useLoaderData();
+  const [season, setSeason] = useState(Number);
+  const [dataPerSeason, setDataPerSeason] = useState();
+
+  useEffect(() => {
+    // Busca pilotos por seção
+    async function pilotSearchByYear(year) {
+      try {
+        const { data } = await ergastAPI.get(
+          `${year.target.value}/drivers.json`,
+          {
+            params: {
+              limit: 1000,
+            },
+          }
+        );
+        return setDataPerSeason(data);
+      } catch (error) {
+        return error;
+      }
+    }
+    pilotSearchByYear(season);
+  }, [season]);
+
+  const data = dataPerSeason || useLoaderData();
 
   return (
     <Container>
@@ -31,6 +54,7 @@ function Drivers() {
         pilotSearch={pilotSearch}
         setPilotSearch={setPilotSearch}
         setSearchSort={setSearchSort}
+        setSeason={setSeason}
       />
       <DriversList
         data={data}

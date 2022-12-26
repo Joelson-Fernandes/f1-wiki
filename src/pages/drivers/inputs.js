@@ -2,16 +2,30 @@
 import React from 'react';
 import styled from 'styled-components';
 
-function Inputs({ searchText, setPilotSearch, setSearchSort }) {
+function Inputs({ searchText, setPilotSearch, setSearchSort, setSeason }) {
+  const years = [];
+  for (let y = 1950; y <= new Date().getFullYear(); y += 1) {
+    years.push(y);
+  }
+
   return (
     <SearchFor>
+      <select onChange={setSeason}>
+        <option defaultValue>Ano</option>
+        {years.map((year) => (
+          <option value={year} key={year}>
+            {year}
+          </option>
+        ))}
+      </select>
+
       <select onChange={setSearchSort}>
         <option defaultValue>Filtro</option>
         <option value="a-z">a - z</option>
       </select>
 
       <input
-        placeholder="Buscar..."
+        placeholder="Buscar por nome"
         type="search"
         value={searchText}
         onChange={(ev) => setPilotSearch(ev.target.value)}

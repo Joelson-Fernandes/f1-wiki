@@ -25,7 +25,7 @@ function DriversList({ data, pilotSearch, searchSort }) {
 
   // variaveis de páginação
   const [currentPage, setCurrentPage] = useState(0);
-  const page = 12;
+  const page = 9;
   const count = Math.ceil(drivers.length / page);
   const startIndex = currentPage * page;
   const endIndex = startIndex + page;

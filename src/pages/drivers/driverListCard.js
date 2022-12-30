@@ -2,6 +2,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
+import PilotPhoto from './getPilotPhoto';
 
 function DriverListCard({ driver }) {
   return (
@@ -10,17 +11,20 @@ function DriverListCard({ driver }) {
         <legend>
           <h1>{`${driver.givenName} ${driver.familyName}`}</h1>
         </legend>
-        <p>
-          Nacionalidade: <span>{`${driver.nationality}`}</span>
-        </p>
-        <p>
-          Nascimento:
-          <span>
-            {` ${new Intl.DateTimeFormat('pt-BR').format(
-              new Date(driver.dateOfBirth)
-            )}`}
-          </span>
-        </p>
+        <PilotPhoto driverName={`${driver.givenName} ${driver.familyName}`} />
+        <Descriptions>
+          <p>
+            Nacionalidade: <span>{`${driver.nationality}`}</span>
+          </p>
+          <p>
+            Nascimento:
+            <span>
+              {` ${new Intl.DateTimeFormat('pt-BR').format(
+                new Date(driver.dateOfBirth)
+              )}`}
+            </span>
+          </p>
+        </Descriptions>
       </Card>
     </Link>
   );
@@ -39,6 +43,7 @@ const Link = styled(NavLink)`
 `;
 
 const Card = styled.fieldset`
+  display: flex;
   height: 100%;
   padding: 15px;
   color: ${(props) => props.theme.cardDrivers.text};
@@ -65,5 +70,15 @@ const Card = styled.fieldset`
       top: -5px;
       right: -5px;
     }
+  }
+`;
+
+const Descriptions = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+
+  p {
+    margin: 5px;
   }
 `;

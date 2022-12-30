@@ -41,7 +41,7 @@ const MaterialUISwitch = styled(Switch)(() => ({
       },
       '& + .MuiSwitch-track': {
         opacity: 1,
-        backgroundColor: '#fff',
+        backgroundColor: 'RGBA(204, 204, 204, 0.33)',
       },
     },
   },

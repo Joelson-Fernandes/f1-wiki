@@ -20,7 +20,7 @@ export const lightTheme = {
   cardDrivers: {
     title: '#000',
     text: '#625F63',
-    background: '#fff',
+    background: 'RGBA(204, 204, 204, 0.33)',
     border: 'red',
     shadow: '#ccc',
   },

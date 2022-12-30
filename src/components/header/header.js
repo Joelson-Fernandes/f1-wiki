@@ -38,6 +38,10 @@ const Nav = styled.nav`
     display: flex;
     width: 100%;
     justify-content: end;
+
+    @media (max-width: 500px) {
+      display: none;
+    }
   }
 `;
 

@@ -2,7 +2,8 @@ import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import ErrorPage from '../pages/error/errorPage';
 import App from '../App';
-import Drivers, { getDrivers } from '../pages/drivers/drivers';
+import Drivers from '../pages/drivers/drivers';
+import { getDrivers } from '../pages/drivers/api/getAllDrivers';
 
 const router = createBrowserRouter([
   {

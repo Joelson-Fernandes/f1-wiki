@@ -20,7 +20,7 @@ export default createGlobalStyle`
     letter-spacing: 4px;
   }
 
-  p {
+  p, a {
     font-family: 'Zen Dots', cursive;
     letter-spacing: 3px;
   }

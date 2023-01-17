@@ -6,25 +6,11 @@ import { ergastAPI } from '../../lib/axios';
 import DriversList from './driverList';
 import Inputs from './inputs';
 
-// Busca todos os pilotos
-export async function getDrivers() {
-  try {
-    const { data } = await ergastAPI.get('drivers.json?=123', {
-      params: {
-        limit: 1000,
-      },
-    });
-    return data;
-  } catch (error) {
-    return error;
-  }
-}
-
 function Drivers() {
   const [pilotSearch, setPilotSearch] = useState('');
   const [searchSort, setSearchSort] = useState('');
   const [season, setSeason] = useState(Number);
-  const [dataPerSeason, setDataPerSeason] = useState();
+  const [dataPerSeason, setDataPerSeason] = useState(Number);
 
   useEffect(() => {
     // Busca pilotos por seção

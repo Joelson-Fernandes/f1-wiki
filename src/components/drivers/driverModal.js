@@ -2,7 +2,7 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import LoadingSpinner from '../../components/loadingSpinner/loadingSpinner';
+import LoadingSpinner from '../loadingSpinner/loadingSpinner';
 import { getPhotoDriver } from './api/getPilotPhoto';
 import { DriverDetails } from './api/getDriver';
 import { DriverStats } from '../../util/driverStats';

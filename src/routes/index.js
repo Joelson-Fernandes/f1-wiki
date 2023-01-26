@@ -4,6 +4,9 @@ import ErrorPage from '../pages/error/errorPage';
 import App from '../App';
 import Drivers from '../components/drivers/drivers';
 import { getDrivers } from '../components/drivers/api/getAllDrivers';
+import Teams from '../components/teams/teams';
+import Rankings from '../components/rankings/rankings';
+import Circuits from '../components/circuits/circuits';
 
 const router = createBrowserRouter([
   {
@@ -18,15 +21,15 @@ const router = createBrowserRouter([
       },
       {
         path: 'circuitos',
-        element: undefined,
+        element: <Circuits />,
       },
       {
         path: 'equipes',
-        element: undefined,
+        element: <Teams />,
       },
       {
         path: 'rankings',
-        element: undefined,
+        element: <Rankings />,
       },
     ],
   },

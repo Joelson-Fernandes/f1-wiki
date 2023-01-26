@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Pagination } from '@mui/material';
 import DriverListCard from './driverListCard';
@@ -8,12 +8,13 @@ function DriversList({ data, pilotSearch, searchSort }) {
   const drivers = data.MRData.DriverTable.Drivers;
 
   // filtro de busca por texto
-  const pilotTextSearch = pilotSearch
-    ? drivers.filter((item) => {
-        const name = `${item.givenName} ${item.familyName}`;
-        return name.toLowerCase().includes(pilotSearch.toLowerCase());
-      })
-    : drivers;
+  const pilotTextSearch =
+    pilotSearch && pilotSearch.length > 2
+      ? drivers.filter((item) => {
+          const name = `${item.givenName} ${item.familyName}`;
+          return name.toLowerCase().includes(pilotSearch.toLowerCase());
+        })
+      : drivers;
 
   // filtra pilotos em ordem alfabetica
   const driversFiltered =
@@ -24,16 +25,20 @@ function DriversList({ data, pilotSearch, searchSort }) {
       : pilotTextSearch;
 
   // variaveis de páginação
-  const [currentPage, setCurrentPage] = useState(0);
-  const page = 9;
-  const count = Math.ceil(drivers.length / page);
-  const startIndex = currentPage * page;
-  const endIndex = startIndex + page;
+  const [page, setPage] = useState(1);
+  const itemsPerPage = 9;
+  const count = Math.ceil(driversFiltered.length / itemsPerPage);
+  const startIndex = (page - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
   const currentData = driversFiltered.slice(startIndex, endIndex);
 
   const handleChange = (e, p) => {
-    setCurrentPage(p - 1);
+    setPage(p);
   };
+
+  useEffect(() => {
+    setPage(1);
+  }, [drivers, driversFiltered]);
 
   return (
     <Container>
@@ -41,6 +46,7 @@ function DriversList({ data, pilotSearch, searchSort }) {
         return <DriverListCard driver={driver} key={driver.driverId} />;
       })}
       <Pagination
+        page={page}
         count={count}
         onChange={handleChange}
         siblingCount={0}

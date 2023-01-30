@@ -5,6 +5,7 @@ import App from '../App';
 import Drivers from '../components/drivers/drivers';
 import { getDrivers } from '../components/drivers/api/getAllDrivers';
 import Teams from '../components/teams/teams';
+import { getTeams } from '../components/teams/api/getAllTeams';
 import Rankings from '../components/rankings/rankings';
 import Circuits from '../components/circuits/circuits';
 
@@ -25,6 +26,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'equipes',
+        loader: getTeams,
         element: <Teams />,
       },
       {

@@ -8,6 +8,7 @@ import Teams from '../components/teams/teams';
 import { getTeams } from '../components/teams/api/getAllTeams';
 import Rankings from '../components/rankings/rankings';
 import Circuits from '../components/circuits/circuits';
+import { getCircuits } from '../components/circuits/api/getAllCircuits';
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'circuitos',
+        loader: getCircuits,
         element: <Circuits />,
       },
       {

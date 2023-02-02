@@ -1,14 +1,20 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import styled from 'styled-components';
+import { getPhotoCircuit } from './api/getCircuitPhoto';
 
 function CircuitListCard({ circuit }) {
+  const circuitPhoto = getPhotoCircuit(circuit).data;
+
   return (
     <Button>
       <Card>
         <legend>
           <h1>{`${circuit.circuitName}`}</h1>
         </legend>
+        <Photo>
+          <img src={circuitPhoto} alt="piloto" />
+        </Photo>
         <Descriptions>
           <p>
             País: <span>{`${circuit.Location.country}`}</span>
@@ -69,6 +75,20 @@ const Card = styled.fieldset`
       top: -5px;
       right: -5px;
     }
+  }
+`;
+
+const Photo = styled.div`
+  border-radius: 0px 15px 0px 15px;
+  -webkit-box-shadow: 7px -7px 0px -2px
+    ${(props) => props.theme.cardDrivers.shadow};
+  -moz-box-shadow: 7px -7px 0px -2px
+    ${(props) => props.theme.cardDrivers.shadow};
+  box-shadow: 7px -7px 0px -2px ${(props) => props.theme.cardDrivers.shadow};
+  img {
+    border-radius: 0px 15px 0px 15px;
+    width: 120px;
+    height: 120px;
   }
 `;
 

@@ -11,7 +11,7 @@ function Header() {
         <NavLink to="/">
           <img src={logo} alt="logo" width={150} />
         </NavLink>
-        <Title>Wiki.</Title>
+        <Title>WIKI</Title>
         <div>
           <ThemeButton />
         </div>
@@ -46,8 +46,8 @@ const Nav = styled.nav`
 `;
 
 const Title = styled.h1`
-  font-family: 'Libre Barcode 39 Text', cursive;
+  font-family: 'Faster One', cursive;
   color: red;
-  font-size: 45px;
+  font-size: 55px;
   margin-left: 40px;
 `;

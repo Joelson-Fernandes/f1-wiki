@@ -2,8 +2,8 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import LoadingSpinner from '../loadingSpinner/loadingSpinner';
-import { getPhotoDriver } from './api/getPilotPhoto';
+import LoadingSpinner from '../../components/loadingSpinner/loadingSpinner';
+import { getImage } from '../../util/getImageWiki';
 import { DriverDetails } from './api/getDriver';
 import { DriverStats } from '../../util/driverStats';
 
@@ -24,7 +24,7 @@ function DriverModal({ params, setOpenModal }) {
   }, [data.isLoading]);
 
   const driverStats = DriverStats(driverData);
-  const photoDriver = getPhotoDriver(driverName).data;
+  const photoDriver = getImage(params).data;
 
   return (
     <div>

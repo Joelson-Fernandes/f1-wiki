@@ -3,13 +3,13 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
-import { getPhotoDriver } from './api/getPilotPhoto';
+import { getImage } from '../../util/getImageWiki';
 import DriverModal from './driverModal';
 
 function DriverListCard({ driver }) {
   const [openModal, setOpenModal] = useState(false);
   const driverName = `${driver.givenName} ${driver.familyName}`;
-  const driverPhoto = getPhotoDriver(driverName).data;
+  const driverPhoto = getImage(driver).data;
 
   return (
     <>

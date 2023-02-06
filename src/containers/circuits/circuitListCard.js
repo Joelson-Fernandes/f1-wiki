@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import styled from 'styled-components';
-import { getPhotoCircuit } from './api/getCircuitPhoto';
+import { getImage } from '../../util/getImageWiki';
 
 function CircuitListCard({ circuit }) {
-  const circuitPhoto = getPhotoCircuit(circuit).data;
+  const circuitPhoto = getImage(circuit).data;
 
   return (
     <Button>

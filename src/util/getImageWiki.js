@@ -1,10 +1,10 @@
 import { useQuery } from 'react-query';
-import { driverImgWiki } from '../../../lib/axios';
-import ProfilePicture from '../../../assets/img/profile.png';
+import { driverImgWiki } from '../lib/axios';
+import ProfilePicture from '../assets/img/profile.png';
 
-export async function getPhoto(circuit) {
+export async function getImageWiki(data) {
   const wikiTtitle = decodeURIComponent(
-    circuit.url.split('/').pop().replaceAll('_', ' ')
+    data.url.split('/').pop().replaceAll('_', ' ')
   );
 
   const URL = await driverImgWiki
@@ -31,9 +31,9 @@ export async function getPhoto(circuit) {
   return URL;
 }
 
-export const getPhotoCircuit = (circuit) =>
+export const getImage = (data) =>
   useQuery({
-    queryKey: ['teamCircuit', circuit],
-    queryFn: () => getPhoto(circuit),
+    queryKey: ['image', data],
+    queryFn: () => getImageWiki(data),
     // ...config,
   });

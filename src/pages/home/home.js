@@ -39,8 +39,8 @@ function Home() {
           <div>
             <h1>Rankings</h1>
             <p>
-              Todos os campeões mundiais, equipes vencedoras do campeonato de
-              construtores e, ranking do grid atual.
+              Todos os campeões mundiais e, equipes vencedoras do campeonato de
+              construtores.
             </p>
           </div>
         </Link>

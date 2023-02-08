@@ -7,6 +7,7 @@ import { getDrivers } from '../containers/drivers/api/getAllDrivers';
 import Teams from '../containers/teams/teams';
 import { getTeams } from '../containers/teams/api/getAllTeams';
 import Rankings from '../containers/rankings/rankings';
+import { getRankings } from '../containers/rankings/api/getAllRankings';
 import Circuits from '../containers/circuits/circuits';
 import { getCircuits } from '../containers/circuits/api/getAllCircuits';
 
@@ -33,6 +34,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'rankings',
+        loader: getRankings,
         element: <Rankings />,
       },
     ],

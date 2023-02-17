@@ -15,12 +15,12 @@ export default createGlobalStyle`
     margin: auto;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1, h2, h3, h4, h5, h6, th {
     font-family: 'Zen Dots', cursive;
     letter-spacing: 4px;
   }
 
-  p, a {
+  p, a, tr {
     font-family: 'Zen Dots', cursive;
     letter-spacing: 3px;
   }

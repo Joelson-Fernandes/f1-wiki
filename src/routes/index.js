@@ -10,11 +10,13 @@ import Rankings from '../containers/rankings/rankings';
 import { getRankings } from '../containers/rankings/api/getAllRankings';
 import Circuits from '../containers/circuits/circuits';
 import { getCircuits } from '../containers/circuits/api/getAllCircuits';
+import { getClassification } from '../components/classification/api/getClassification';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
+    loader: getClassification,
     errorElement: <ErrorPage />,
     children: [
       {

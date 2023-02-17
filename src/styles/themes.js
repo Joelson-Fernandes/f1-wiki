@@ -1,3 +1,6 @@
+import StripedBackground from '../assets/img/bg.png';
+import StripedBackgroundWhite from '../assets/img/bg-white-stripe.png';
+
 export const darkTheme = {
   palette: {
     mode: 'dark',
@@ -11,6 +14,8 @@ export const darkTheme = {
   },
   background: '#000',
   title: '#fff',
+  stripedBackground: `url(${StripedBackgroundWhite})`,
+  backgroundTable: 'RGB(124, 122, 122)',
 };
 
 export const lightTheme = {
@@ -26,4 +31,6 @@ export const lightTheme = {
   },
   background: '#fff',
   title: '#000',
+  stripedBackground: `url(${StripedBackground})`,
+  backgroundTable: '#ccc',
 };

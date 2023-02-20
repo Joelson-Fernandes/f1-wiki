@@ -33,8 +33,6 @@ function Inputs({ searchText, setSearchText, setRanking, ranking }) {
 }
 
 const SearchFor = styled.div`
-  width: 95%;
-  margin: auto;
   border-bottom: 2px solid red;
   padding: 14px;
   display: flex;

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useLoaderData } from 'react-router-dom';
-import styled from 'styled-components';
-import { ergastAPI } from '../../lib/axios';
-import Inputs from './inputs';
+import { Container, Header } from '../styles';
+import { circuitByYear } from './api/getCircuits';
+import Inputs from '../../components/search/input';
 import CircuitList from './circuitList';
 
 function Circuits() {
@@ -12,35 +12,29 @@ function Circuits() {
   const [dataPerSeason, setDataPerSeason] = useState(Number);
 
   useEffect(() => {
-    // Busca construtor por seção
-    async function teamSearchByYear(year) {
-      try {
-        const { data } = await ergastAPI.get(
-          `${year.target.value}/circuits.json`,
-          {
-            params: {
-              limit: 1000,
-            },
-          }
-        );
-        return setDataPerSeason(data);
-      } catch (error) {
-        return error;
-      }
+    // Busca circuito por seção
+    async function getCircuitByYear(year) {
+      const res = await circuitByYear(year);
+      setDataPerSeason(res);
     }
-    teamSearchByYear(season);
+
+    getCircuitByYear(season);
   }, [season]);
 
   const data = dataPerSeason || useLoaderData();
 
   return (
     <Container>
-      <Inputs
-        setCircuitSearch={setCircuitSearchText}
-        setSearchSort={setSearchSort}
-        setSeason={setSeason}
-        searchText={circuitSearchText}
-      />
+      <Header>
+        <h2>Circuitos</h2>
+        <Inputs
+          setSearchText={setCircuitSearchText}
+          searchText={circuitSearchText}
+          setSearchSort={setSearchSort}
+          setSeason={setSeason}
+        />
+      </Header>
+
       <CircuitList
         searchSort={searchSort}
         circuitSearchText={circuitSearchText}
@@ -51,5 +45,3 @@ function Circuits() {
 }
 
 export default Circuits;
-
-const Container = styled.section``;

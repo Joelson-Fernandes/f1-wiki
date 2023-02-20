@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
 import { Pagination } from '@mui/material';
+import { ContainerBox } from '../styles';
 import DriverListCard from './driverListCard';
 
 function DriversList({ data, pilotSearch, searchSort }) {
@@ -41,7 +41,7 @@ function DriversList({ data, pilotSearch, searchSort }) {
   }, [drivers, driversFiltered]);
 
   return (
-    <Container>
+    <ContainerBox>
       {currentData.map((driver) => {
         return <DriverListCard driver={driver} key={driver.driverId} />;
       })}
@@ -52,45 +52,8 @@ function DriversList({ data, pilotSearch, searchSort }) {
         siblingCount={0}
         shape="rounded"
       />
-    </Container>
+    </ContainerBox>
   );
 }
 
 export default DriversList;
-
-const Container = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  padding: 8px 15px;
-
-  // nav paginação
-  nav {
-    display: flex;
-    justify-content: center;
-    width: 95%;
-    padding: 15px 0;
-    border-bottom: 2px solid red;
-
-    button {
-      &.MuiPaginationItem-root {
-        color: ${(props) => props.theme.title};
-        border: 2px solid red;
-
-        &:hover {
-          color: #fff;
-          background-color: red;
-          border: 2px solid ${(props) => props.theme.background};
-        }
-      }
-      &.Mui-selected {
-        color: #fff;
-        background-color: red;
-      }
-    }
-
-    div {
-      color: ${(props) => props.theme.title};
-    }
-  }
-`;

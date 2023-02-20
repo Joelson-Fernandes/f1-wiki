@@ -4,13 +4,13 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import LoadingSpinner from '../../components/loadingSpinner/loadingSpinner';
 import { getImage } from '../../util/getImageWiki';
-import { DriverDetails } from './api/getDriver';
+import { driverDetails } from './api/getDrivers';
 import { DriverStats } from '../../util/driverStats';
 
 function DriverModal({ params, setOpenModal }) {
   const { driverId } = params;
   const driverName = `${params.givenName} ${params.familyName}`;
-  const data = DriverDetails(driverId);
+  const data = driverDetails(driverId);
   const [isLoading, setIsLoading] = useState(true);
   const [driverData, setDriverData] = useState([]);
 

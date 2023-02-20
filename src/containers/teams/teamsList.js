@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react';
 import { Pagination } from '@mui/material';
-import styled from 'styled-components';
+import { ContainerBox } from '../styles';
 import TeamListCard from './teamListCard';
 
 function TeamsList({ data, teamSearchText, searchSort }) {
@@ -41,7 +41,7 @@ function TeamsList({ data, teamSearchText, searchSort }) {
   }, [teams, teamsFiltered]);
 
   return (
-    <Container>
+    <ContainerBox>
       {currentData.map((team) => {
         return <TeamListCard team={team} key={team.constructorId} />;
       })}
@@ -52,45 +52,8 @@ function TeamsList({ data, teamSearchText, searchSort }) {
         siblingCount={0}
         shape="rounded"
       />
-    </Container>
+    </ContainerBox>
   );
 }
 
 export default TeamsList;
-
-const Container = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  padding: 8px 15px;
-
-  // nav paginação
-  nav {
-    display: flex;
-    justify-content: center;
-    width: 95%;
-    padding: 15px 0;
-    border-bottom: 2px solid red;
-
-    button {
-      &.MuiPaginationItem-root {
-        color: ${(props) => props.theme.title};
-        border: 2px solid red;
-
-        &:hover {
-          color: #fff;
-          background-color: red;
-          border: 2px solid ${(props) => props.theme.background};
-        }
-      }
-      &.Mui-selected {
-        color: #fff;
-        background-color: red;
-      }
-    }
-
-    div {
-      color: ${(props) => props.theme.title};
-    }
-  }
-`;

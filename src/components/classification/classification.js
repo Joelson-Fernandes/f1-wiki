@@ -26,10 +26,13 @@ export default Classification;
 
 const Container = styled.section`
   width: 95%;
-  margin: 10px auto;
+  margin: 20px auto;
   padding: 15px;
   border-top: 2px solid red;
+  overflow: auto;
   background-image: ${(props) => props.theme.stripedBackground};
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
   h1,
   h2 {
     color: ${(props) => props.theme.title};

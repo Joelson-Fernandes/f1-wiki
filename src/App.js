@@ -10,8 +10,8 @@ function App() {
   return (
     <>
       <Header />
-      <Outlet />
       <Home />
+      <Outlet />
       <Classification />
       <Footer />
       <GlobalStyles />

@@ -23,16 +23,17 @@ function Header() {
 export default Header;
 
 const HeaderBar = styled.header`
-  display: flex;
-  justify-content: center;
+  width: 95%;
+  margin: 0 auto;
+  border-right: 2px solid red;
+  border-bottom: 2px solid red;
+  border-bottom-right-radius: 15px;
 `;
 
 const Nav = styled.nav`
-  width: 95%;
   padding: 15px;
   display: flex;
   align-items: center;
-  border-bottom: 2px solid red;
 
   div {
     display: flex;
@@ -43,6 +44,11 @@ const Nav = styled.nav`
       display: none;
     }
   }
+  img {
+    @media (max-width: 500px) {
+      width: 100px;
+    }
+  }
 `;
 
 const Title = styled.h1`
@@ -50,4 +56,8 @@ const Title = styled.h1`
   color: red;
   font-size: 55px;
   margin-left: 40px;
+
+  @media (max-width: 500px) {
+    font-size: 32px;
+  }
 `;

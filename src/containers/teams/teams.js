@@ -1,46 +1,40 @@
 import React, { useState, useEffect } from 'react';
 import { useLoaderData } from 'react-router-dom';
-import styled from 'styled-components';
-import { ergastAPI } from '../../lib/axios';
-import Inputs from './inputs';
+import { Container, Header } from '../styles';
+import { teamByYear } from './api/getTeams';
+import Inputs from '../../components/search/input';
 import TeamsList from './teamsList';
 
 function Teams() {
   const [teamSearchText, setTeamSearchText] = useState('');
   const [searchSort, setSearchSort] = useState('');
   const [season, setSeason] = useState(Number);
-  const [dataPerSeason, setDataPerSeason] = useState(Number);
+  const [dataPerSeason, setDataPerSeason] = useState(false);
 
   useEffect(() => {
     // Busca construtor por seção
-    async function teamSearchByYear(year) {
-      try {
-        const { data } = await ergastAPI.get(
-          `${year.target.value}/constructors.json`,
-          {
-            params: {
-              limit: 1000,
-            },
-          }
-        );
-        return setDataPerSeason(data);
-      } catch (error) {
-        return error;
-      }
+    async function getTeamByYear(year) {
+      const result = await teamByYear(year);
+      return setDataPerSeason(result);
     }
-    teamSearchByYear(season);
+
+    getTeamByYear(season);
   }, [season]);
 
   const data = dataPerSeason || useLoaderData();
 
   return (
     <Container>
-      <Inputs
-        setTeamSearch={setTeamSearchText}
-        setSearchSort={setSearchSort}
-        setSeason={setSeason}
-        teamSearch={teamSearchText}
-      />
+      <Header>
+        <h2>Construtores</h2>
+        <Inputs
+          searchText={teamSearchText}
+          setSearchText={setTeamSearchText}
+          setSearchSort={setSearchSort}
+          setSeason={setSeason}
+        />
+      </Header>
+
       <TeamsList
         searchSort={searchSort}
         teamSearchText={teamSearchText}
@@ -51,5 +45,3 @@ function Teams() {
 }
 
 export default Teams;
-
-const Container = styled.section``;

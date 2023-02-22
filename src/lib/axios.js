@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const driverImgWiki = axios.create({
+export const imgWiki = axios.create({
   baseURL: 'https://en.wikipedia.org/w/',
 });
 

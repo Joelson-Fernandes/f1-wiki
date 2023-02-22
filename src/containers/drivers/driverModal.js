@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import LoadingSpinner from '../../components/loadingSpinner/loadingSpinner';
-import { getImage } from '../../util/getImageWiki';
+import { getThumbnail } from '../../util/getImageWiki';
 import { driverDetails } from './api/getDrivers';
 import { DriverStats } from '../../util/driverStats';
 
@@ -24,7 +24,7 @@ function DriverModal({ params, setOpenModal }) {
   }, [data.isLoading]);
 
   const driverStats = DriverStats(driverData);
-  const photoDriver = getImage(params).data;
+  const photoDriver = getThumbnail(params).data;
 
   return (
     <div>

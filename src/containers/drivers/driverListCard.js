@@ -1,14 +1,14 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 import Modal from '@mui/material/Modal';
-import { getImage } from '../../util/getImageWiki';
+import { getThumbnail } from '../../util/getImageWiki';
 import DriverModal from './driverModal';
 import { Button, Card, Photo, Descriptions, BoxModal } from '../styles';
 
 function DriverListCard({ driver }) {
   const [openModal, setOpenModal] = useState(false);
   const driverName = `${driver.givenName} ${driver.familyName}`;
-  const driverPhoto = getImage(driver).data;
+  const driverPhoto = getThumbnail(driver).data;
 
   return (
     <>

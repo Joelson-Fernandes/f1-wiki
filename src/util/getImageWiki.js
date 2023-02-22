@@ -1,13 +1,13 @@
 import { useQuery } from 'react-query';
-import { driverImgWiki } from '../lib/axios';
+import { imgWiki } from '../lib/axios';
 import ProfilePicture from '../assets/img/profile.png';
 
-export async function getImageWiki(data) {
+export async function getThumbnailWiki(data) {
   const wikiTtitle = decodeURIComponent(
     data.url.split('/').pop().replaceAll('_', ' ')
   );
 
-  const URL = await driverImgWiki
+  const URL = await imgWiki
     .get('api.php', {
       params: {
         action: 'query',
@@ -31,9 +31,9 @@ export async function getImageWiki(data) {
   return URL;
 }
 
-export const getImage = (data) =>
+export const getThumbnail = (data) =>
   useQuery({
-    queryKey: ['image', data],
-    queryFn: () => getImageWiki(data),
+    queryKey: ['thumbnail', data],
+    queryFn: () => getThumbnailWiki(data),
     // ...config,
   });

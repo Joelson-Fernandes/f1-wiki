@@ -108,6 +108,11 @@ export const Descriptions = styled.div`
   p,
   a {
     margin: 5px;
+    overflow: hidden; // Removendo barra de rolagem
+    text-overflow: ellipsis; // Adicionando "..." ao final
+    display: -webkit-box;
+    -webkit-line-clamp: 2; // Quantidade de linhas
+    -webkit-box-orient: vertical;
   }
 
   a {

@@ -2,7 +2,7 @@ import { useQuery } from 'react-query';
 import { imgWiki } from '../lib/axios';
 import ProfilePicture from '../assets/img/profile.png';
 
-export async function getThumbnailWiki(data) {
+async function getThumbnailWiki(data) {
   const wikiTtitle = decodeURIComponent(
     data.url.split('/').pop().replaceAll('_', ' ')
   );
@@ -31,9 +31,46 @@ export async function getThumbnailWiki(data) {
   return URL;
 }
 
+async function getImagesWiki(data) {
+  const wikiTtitle = decodeURIComponent(
+    data.url.split('/').pop().replaceAll('_', ' ')
+  );
+
+  const imagesArr = await imgWiki
+    .get('api.php', {
+      params: {
+        action: 'query',
+        prop: 'images',
+        format: 'json',
+        titles: wikiTtitle,
+        origin: '*',
+        redirects: '',
+      },
+    })
+    .then(async (res) => {
+      const pageId = Object.keys(res.data.query.pages)[0];
+      const images = await res.data.query.pages[pageId].images.filter(
+        (image) =>
+          image.title.includes('.jpg') ||
+          image.title.includes('.png') ||
+          image.title.includes('.jpeg')
+      );
+      return images;
+    })
+    .catch((e) => e);
+  return imagesArr;
+}
+
 export const getThumbnail = (data) =>
   useQuery({
     queryKey: ['thumbnail', data],
     queryFn: () => getThumbnailWiki(data),
+    // ...config,
+  });
+
+export const getImages = (data) =>
+  useQuery({
+    queryKey: ['images', data],
+    queryFn: () => getImagesWiki(data),
     // ...config,
   });

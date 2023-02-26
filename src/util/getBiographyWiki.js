@@ -1,12 +1,12 @@
 import { useQuery } from 'react-query';
 import axios from 'axios';
 
-async function getBiography(data) {
+async function getBiography(team) {
   const wikiTtitle = decodeURIComponent(
-    data.url.split('/').pop().replaceAll('_', ' ')
+    team.url.split('/').pop().replaceAll('_', ' ')
   );
 
-  const biography = await axios
+  const byographi = await axios
     .get('https://pt.wikipedia.org/w/api.php', {
       params: {
         action: 'query',
@@ -29,12 +29,14 @@ async function getBiography(data) {
       return biographyText;
     })
     .catch((e) => e);
-  return biography;
+  return byographi;
 }
 
-export const biography = (data) =>
-  useQuery({
-    queryKey: ['biography', data],
-    queryFn: () => getBiography(data),
+export function biography(team) {
+  const result = useQuery({
+    queryKey: ['biography', team],
+    queryFn: () => getBiography(team),
     // ...config,
   });
+  return result;
+}

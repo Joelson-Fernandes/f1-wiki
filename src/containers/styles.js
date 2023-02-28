@@ -149,4 +149,71 @@ export const BoxModal = styled(Box)`
   @media screen and (max-width: 600px) {
     width: 100%;
   }
+  @media screen and (max-width: 900px) {
+    width: 85%;
+  }
+`;
+
+// Modals
+export const ButtonModal = styled.div`
+  position: relative;
+  float: right;
+  width: 32px;
+  height: 32px;
+  top: 32px;
+  border-radius: 0px 15px 0px 15px;
+  z-index: 101;
+  background: rgba(245, 14, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+  &::before,
+  &::after {
+    position: absolute;
+    content: '';
+    width: 60%;
+    height: 4px; /* cross thickness */
+    background-color: #fff;
+  }
+  &::before {
+    transform: rotate(45deg);
+  }
+  &::after {
+    transform: rotate(-45deg);
+  }
+`;
+
+export const CardModal = styled.div`
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 0px 15px 0px 15px;
+
+  img {
+    max-height: 400px;
+    border-radius: 0px 15px 0px 15px;
+  }
+
+  @media screen and (max-width: 1020px) {
+    justify-content: center;
+  }
+`;
+
+export const DescriptionModal = styled.div`
+  padding: 15px;
+  h2 {
+    color: ${(props) => props.theme.title};
+    margin: 5px 0;
+  }
+
+  a {
+    text-decoration: underline;
+    color: #000;
+  }
 `;

@@ -1,9 +1,9 @@
 import { useQuery } from 'react-query';
 import axios from 'axios';
 
-async function getBiography(team) {
+async function getBiography(data) {
   const wikiTtitle = decodeURIComponent(
-    team.url.split('/').pop().replaceAll('_', ' ')
+    data.url.split('/').pop().replaceAll('_', ' ')
   );
 
   const byographi = await axios
@@ -32,10 +32,10 @@ async function getBiography(team) {
   return byographi;
 }
 
-export function biography(team) {
+export function biography(data) {
   const result = useQuery({
-    queryKey: ['biography', team],
-    queryFn: () => getBiography(team),
+    queryKey: ['biography', data],
+    queryFn: () => getBiography(data),
     // ...config,
   });
   return result;

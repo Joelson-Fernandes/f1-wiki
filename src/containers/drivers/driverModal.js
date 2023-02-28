@@ -1,7 +1,7 @@
 /* eslint-disable prefer-destructuring */
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
+import { ButtonModal, CardModal, DescriptionModal } from '../styles';
 import LoadingSpinner from '../../components/loadingSpinner/loadingSpinner';
 import { getThumbnail } from '../../util/getImageWiki';
 import { driverDetails } from './api/getDrivers';
@@ -32,10 +32,10 @@ function DriverModal({ params, setOpenModal }) {
         <LoadingSpinner />
       ) : (
         <>
-          <Button type="button" onClick={() => setOpenModal(false)} />
-          <Card>
+          <ButtonModal type="button" onClick={() => setOpenModal(false)} />
+          <CardModal>
             <img src={photoDriver} alt="piloto" />
-            <Description>
+            <DescriptionModal>
               <h2>{driverName}.</h2>
               <p>
                 Nacionalidade: <span>{`${params.nationality}`}</span>.
@@ -66,8 +66,8 @@ function DriverModal({ params, setOpenModal }) {
               <a href={params.url} target="_blank" rel="noreferrer">
                 Biografia
               </a>
-            </Description>
-          </Card>
+            </DescriptionModal>
+          </CardModal>
         </>
       )}
     </div>
@@ -75,66 +75,3 @@ function DriverModal({ params, setOpenModal }) {
 }
 
 export default DriverModal;
-
-const Button = styled.div`
-  position: relative;
-  float: right;
-  width: 32px;
-  height: 32px;
-  top: 32px;
-  border-radius: 0px 15px 0px 15px;
-  z-index: 101;
-  background: rgba(245, 14, 0, 0.6);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-
-  &::before,
-  &::after {
-    position: absolute;
-    content: '';
-    width: 60%;
-    height: 4px; /* cross thickness */
-    background-color: #fff;
-  }
-  &::before {
-    transform: rotate(45deg);
-  }
-  &::after {
-    transform: rotate(-45deg);
-  }
-`;
-
-const Card = styled.div`
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  padding: 10px;
-  background: rgba(255, 255, 255, 0.35);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border-radius: 0px 15px 0px 15px;
-
-  img {
-    max-height: 400px;
-    border-radius: 0px 15px 0px 15px;
-  }
-
-  @media screen and (max-width: 1020px) {
-    justify-content: center;
-  }
-`;
-
-const Description = styled.div`
-  padding: 15px;
-  h2 {
-    color: ${(props) => props.theme.title};
-    margin: 5px 0;
-  }
-
-  a {
-    text-decoration: underline;
-    color: #000;
-  }
-`;

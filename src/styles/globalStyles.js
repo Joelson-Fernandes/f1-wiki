@@ -24,4 +24,17 @@ export default createGlobalStyle`
     font-family: 'Zen Dots', cursive;
     letter-spacing: 3px;
   }
+
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: RGBA(204, 204, 204, 0.33);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(245, 14, 0, 0.6);
+    border-radius: 20px;
+  }
 `;

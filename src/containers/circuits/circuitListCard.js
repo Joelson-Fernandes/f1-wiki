@@ -8,7 +8,6 @@ import { getThumbnail } from '../../util/getImageWiki';
 function CircuitListCard({ circuit }) {
   const circuitPhoto = getThumbnail(circuit).data;
   const [openModal, setOpenModal] = useState(false);
-  console.log(circuit);
 
   return (
     <>

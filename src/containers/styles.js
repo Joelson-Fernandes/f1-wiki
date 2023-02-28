@@ -140,6 +140,7 @@ export const Photo = styled.div`
   }
 `;
 
+// Modals
 export const BoxModal = styled(Box)`
   position: absolute;
   top: 50%;
@@ -154,7 +155,6 @@ export const BoxModal = styled(Box)`
   }
 `;
 
-// Modals
 export const ButtonModal = styled.div`
   position: relative;
   float: right;
@@ -187,13 +187,15 @@ export const ButtonModal = styled.div`
 
 export const CardModal = styled.div`
   width: 100%;
+  max-height: 95vh;
   display: flex;
   flex-wrap: wrap;
   padding: 10px;
-  background: rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.45);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   border-radius: 0px 15px 0px 15px;
+  overflow: auto;
 
   img {
     max-height: 400px;
@@ -215,5 +217,6 @@ export const DescriptionModal = styled.div`
   a {
     text-decoration: underline;
     color: #000;
+    margin-top: 15px;
   }
 `;

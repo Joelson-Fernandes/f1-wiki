@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { Container } from '../styles';
 import { rankingConstructors } from './api/getRankings';
@@ -9,6 +9,7 @@ function Rankings() {
   const [searchText, setSearchText] = useState('');
   const [constructorRanking, setConstructorsRanking] = useState([]);
   const [ranking, setRanking] = useState('');
+  const containerRef = useRef(null);
 
   useEffect(() => {
     async function getRankingConstructors() {
@@ -16,13 +17,17 @@ function Rankings() {
       return setConstructorsRanking(result);
     }
 
+    if (containerRef.current) {
+      containerRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+
     getRankingConstructors();
-  }, [ranking]);
+  }, [ranking, containerRef]);
 
   const data =
     ranking && ranking === '0' ? constructorRanking : useLoaderData();
   return (
-    <Container>
+    <Container ref={containerRef}>
       <Inputs
         searchText={searchText}
         setSearchText={setSearchText}

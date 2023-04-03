@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { Container, Header } from '../styles';
 import { teamByYear } from './api/getTeams';
@@ -10,6 +10,7 @@ function Teams() {
   const [searchSort, setSearchSort] = useState('');
   const [season, setSeason] = useState(Number);
   const [dataPerSeason, setDataPerSeason] = useState(false);
+  const containerRef = useRef(null);
 
   useEffect(() => {
     // Busca construtor por seção
@@ -18,13 +19,17 @@ function Teams() {
       return setDataPerSeason(result);
     }
 
+    if (containerRef.current) {
+      containerRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+
     getTeamByYear(season);
-  }, [season]);
+  }, [season, containerRef]);
 
   const data = dataPerSeason || useLoaderData();
 
   return (
-    <Container>
+    <Container ref={containerRef}>
       <Header>
         <h2>Construtores</h2>
         <Inputs

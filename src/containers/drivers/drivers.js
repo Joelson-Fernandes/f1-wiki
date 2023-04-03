@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/alt-text */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { Container, Header } from '../styles';
 import { driversByYear } from './api/getDrivers';
@@ -11,6 +11,7 @@ function Drivers() {
   const [searchSort, setSearchSort] = useState('');
   const [season, setSeason] = useState(Number);
   const [dataPerSeason, setDataPerSeason] = useState(false);
+  const containerRef = useRef(null);
 
   useEffect(() => {
     // Busca pilotos por seção
@@ -18,13 +19,18 @@ function Drivers() {
       const res = await driversByYear(year);
       return setDataPerSeason(res);
     }
+
+    if (containerRef.current) {
+      containerRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+
     getDriversByYear(season);
-  }, [season]);
+  }, [season, containerRef]);
 
   const data = dataPerSeason || useLoaderData();
 
   return (
-    <Container>
+    <Container ref={containerRef}>
       <Header>
         <h2>Pilotos</h2>
         <Inputs

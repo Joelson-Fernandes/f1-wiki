@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { Container, Header } from '../styles';
 import { circuitByYear } from './api/getCircuits';
@@ -10,6 +10,7 @@ function Circuits() {
   const [searchSort, setSearchSort] = useState('');
   const [season, setSeason] = useState(Number);
   const [dataPerSeason, setDataPerSeason] = useState(Number);
+  const containerRef = useRef(null);
 
   useEffect(() => {
     // Busca circuito por seção
@@ -18,13 +19,17 @@ function Circuits() {
       setDataPerSeason(res);
     }
 
+    if (containerRef.current) {
+      containerRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+
     getCircuitByYear(season);
-  }, [season]);
+  }, [season, containerRef]);
 
   const data = dataPerSeason || useLoaderData();
 
   return (
-    <Container>
+    <Container ref={containerRef}>
       <Header>
         <h2>Circuitos</h2>
         <Inputs
